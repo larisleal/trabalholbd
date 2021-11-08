@@ -31,7 +31,7 @@
 
 .offline-doc .navbar.navbar-transparent .navbar-brand,
 .offline-doc .navbar.navbar-transparent .collapse .navbar-nav .nav-link {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .offline-doc .footer {
@@ -58,4 +58,13 @@
   z-index: 2;
   height: calc(100vh - 70px);
   margin-top: 70px;
+}
+
+.sidebar .nav p {
+  margin: 0;
+  line-height: 30px;
+  font-size: 14px;
+  display: inline-flex;
+  height: auto;
+  white-space: nowrap;
 }
