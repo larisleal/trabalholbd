@@ -1,5 +1,17 @@
 <?php 
 namespace Controller;
+include_once('Model/Paciente.php');
+include_once('Model/PacienteEndereco.php');
+include_once('Model/Endereco.php');
+include_once('Model/Caixa.php');
+include_once('Model/Material.php');
+include_once('Model/Usuario.php');
+use Model\Paciente;
+use Model\PacienteEndereco;
+use Model\Endereco;
+use Model\Caixa;
+use Model\Material;
+use Model\Usuario;
 
 
 class Controller    {
