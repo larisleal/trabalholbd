@@ -33,7 +33,7 @@ class Route{
         $this->routes['/insereusuario'] = array('controller' => 'Controller', 'action' => 'insereUsuario');
 
         //funções
-        // $this->routes['/inseretarefa'] = array('controller' => 'Controller', 'action' => 'insertTarefa');
+        // $this->routes['/inserirpaciente'] = array('controller' => 'Controller', 'action' => 'inserePaciente');
         // $this->routes['/insereetiqueta'] = array('controller' => 'Controller', 'action' => 'insertEtiqueta');
         // $this->routes['/removetarefa'] = array('controller' => 'Controller', 'action' => 'removeTarefa');
         // $this->routes['/removeetiqueta'] = array('controller' => 'Controller', 'action' => 'removeEtiqueta');

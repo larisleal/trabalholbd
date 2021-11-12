@@ -1,7 +1,7 @@
 <?php
 namespace Model;
 
-Class Caixa {
+Class Material {
 
     private $materialID;
     private $nomeFornecedor;

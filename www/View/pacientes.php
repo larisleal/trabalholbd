@@ -1,3 +1,21 @@
+<?php 
+
+    if(isset($_SESSION['pacientesarray'])) {
+        $pacientesArray = unserialize($_SESSION['pacientesarray']);
+    }
+
+    if(isset($_SESSION['enderecosarray'])) {
+      $enderecosArray = unserialize($_SESSION['enderecosarray']);
+    }
+  
+    
+    if(session_status() == PHP_SESSION_NONE){
+      session_start();
+    }
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="pt-br">
 

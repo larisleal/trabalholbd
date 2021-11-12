@@ -45,6 +45,17 @@ public function init() {
     }
 
     public function visualizaPaciente() {
+
+    //     //array de pacientes
+    //     $pacientes = new pacientesActions();
+    //     $pacientesArray = $pacientes->selectAllPacientes();
+    //     $_SESSION['pacientesarray']=serialize($pacientesArray);
+
+    //     //array de endereços
+    //     $enderecos = new enderecosActions();
+    //     $enderecosArray = $enderecos->selectAllEnderecos();
+    //     $_SESSION['enderecosarray']=serialize($enderecosArray);
+
         require 'View/pacientes.php';
     }
 
@@ -80,15 +91,15 @@ public function init() {
     // }
 
     // public function goMyTasks() {
-    //     //array de etiquetas
-    //     $etiquetas = new etiquetasActions();
-    //     $etiquetasArray = $etiquetas->selectAllEtiquetas();
-    //     $_SESSION['etiquetasarray']=serialize($etiquetasArray);
+    //     //array de pacientes
+    //     $pacientes = new pacientesActions();
+    //     $pacientesArray = $pacientes->selectAllPacientes();
+    //     $_SESSION['pacientesarray']=serialize($pacientesArray);
 
-    //     //array de tarefas
-    //     $tarefas = new tarefasActions();
-    //     $tarefasArray = $tarefas->selectAllTarefas();
-    //     $_SESSION['tarefasarray']=serialize($tarefasArray);
+    //     //array de endereços
+    //     $enderecos = new enderecosActions();
+    //     $enderecosArray = $enderecos->selectAllEnderecos();
+    //     $_SESSION['enderecosarray']=serialize($enderecosArray);
     //     require 'View/minhas-tarefas.php';
 
     // }
@@ -121,11 +132,11 @@ public function init() {
     // -------------------------------- CRUDS ------------------------------------------------------------------------------------
     
 
-    //INSERE TAREFA
-    // public function insertTarefa() {
+    //INSERE PACIENTE
+    // public function inserePaciente() {
 
  
-    //     if(isset($_POST['addtarefa'])) {
+    //     if(isset($_POST['addpaciente'])) {
 
     //         $nome = $_POST['nome'];
     //         $prazo = $_POST['prazo'];
