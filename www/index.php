@@ -1,8 +1,6 @@
 <?php
 
-include('Controller/loginController.php');
 include('Controller/controller.php');
-include('Controller/cadastroController.php');
 include('config/config.php');
 
 $route = new Route();
@@ -21,28 +19,24 @@ class Route{
     public function initRoutes()
     {
 
-        // login
-        $this->routes['/'] = array('controller' => 'loginController', 'action' => 'goLogin');
-        $this->routes['/logar'] = array('controller' => 'loginController', 'action' => 'tryLogin');
-        $this->routes['/logout'] = array('controller' => 'loginController', 'action' => 'goLogout');
-        $this->routes['/cadastro'] = array('controller' => 'Controller', 'action' => 'goCadastrar');
-
-        //cadastro
-        $this->routes['/cadastrar'] = array('controller' => 'cadastroController', 'action' => 'cadastrar');
+        //rota página inicial
+        $this->routes['/'] = array('controller' => 'controller', 'action' => 'dashboard');
 
         //rotas menu
-        $this->routes['/dashboard'] = array('controller' => 'Controller', 'action' => 'goDashboard');
-        $this->routes['/mytasks'] = array('controller' => 'Controller', 'action' => 'goMyTasks');
-        $this->routes['/mylists'] = array('controller' => 'Controller', 'action' => 'goMyLists');
-        $this->routes['/mytags'] = array('controller' => 'Controller', 'action' => 'goMyTags');
-        $this->routes['/sharedlists'] = array('controller' => 'Controller', 'action' => 'goSharedLists');
-        $this->routes['/sair'] = array('controller' => 'Controller', 'action' => 'gotelalogin');
+        $this->routes['/dashboard'] = array('controller' => 'Controller', 'action' => 'dashboard');
+        $this->routes['/inserepaciente'] = array('controller' => 'Controller', 'action' => 'inserePaciente');
+        $this->routes['/visualizapaciente'] = array('controller' => 'Controller', 'action' => 'visualizaPaciente');
+        $this->routes['/inserevenda'] = array('controller' => 'Controller', 'action' => 'insereVenda');
+        $this->routes['/visualizavenda'] = array('controller' => 'Controller', 'action' => 'visualizaVenda');
+        $this->routes['/inserematerial'] = array('controller' => 'Controller', 'action' => 'insereMaterial');
+        $this->routes['/relatorios'] = array('controller' => 'Controller', 'action' => 'relatorios');
+        $this->routes['/insereusuario'] = array('controller' => 'Controller', 'action' => 'insereUsuario');
 
         //funções
-        $this->routes['/inseretarefa'] = array('controller' => 'Controller', 'action' => 'insertTarefa');
-        $this->routes['/insereetiqueta'] = array('controller' => 'Controller', 'action' => 'insertEtiqueta');
-        $this->routes['/removetarefa'] = array('controller' => 'Controller', 'action' => 'removeTarefa');
-        $this->routes['/removeetiqueta'] = array('controller' => 'Controller', 'action' => 'removeEtiqueta');
+        // $this->routes['/inseretarefa'] = array('controller' => 'Controller', 'action' => 'insertTarefa');
+        // $this->routes['/insereetiqueta'] = array('controller' => 'Controller', 'action' => 'insertEtiqueta');
+        // $this->routes['/removetarefa'] = array('controller' => 'Controller', 'action' => 'removeTarefa');
+        // $this->routes['/removeetiqueta'] = array('controller' => 'Controller', 'action' => 'removeEtiqueta');
 
     }
 
