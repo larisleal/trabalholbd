@@ -216,7 +216,7 @@ class Controller
                 header("Location: " . DIRPAGE . "/mytasks");
             } else {
                 header("Location: " . DIRPAGE . "/mytasks");
-                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir paciente, tente novamente. </div>";
+                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir usuario, tente novamente. </div>";
             }
         }
         //     //array de usuários
