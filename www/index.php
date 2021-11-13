@@ -33,10 +33,10 @@ class Route{
         $this->routes['/insereusuario'] = array('controller' => 'Controller', 'action' => 'insereUsuario');
 
         //funções
-        // $this->routes['/inserirpaciente'] = array('controller' => 'Controller', 'action' => 'inserePaciente');
-        // $this->routes['/insereetiqueta'] = array('controller' => 'Controller', 'action' => 'insertEtiqueta');
-        // $this->routes['/removetarefa'] = array('controller' => 'Controller', 'action' => 'removeTarefa');
-        // $this->routes['/removeetiqueta'] = array('controller' => 'Controller', 'action' => 'removeEtiqueta');
+        $this->routes['/inserirpaciente'] = array('controller' => 'Controller', 'action' => 'inserirPaciente');
+        $this->routes['/inserirvenda'] = array('controller' => 'Controller', 'action' => 'inserirVenda');
+        $this->routes['/removervenda'] = array('controller' => 'Controller', 'action' => 'removerVenda');
+        $this->routes['/inserirmaterial'] = array('controller' => 'Controller', 'action' => 'inserirMaterial');
 
     }
 

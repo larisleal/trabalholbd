@@ -13,9 +13,10 @@ class pacientesActions extends ConexaoDB{
     //INSERE PACIENTES
     public function inserePaciente($nome, $dataNasc, $cpf, $email, $enderecoID, $telefone, $celular, $observacoes) {
 
+        var_dump("entrou na model");
+        die();
 
-
-        $Datafetch = $this->Db = $this->ConexaoDB()->prepare("INSERT INTO `paciente`(`nome`, `dataNasc`, `cpf`, `email`, `enderecoID`, `telefone`, `celular`, `observacoes`) 
+        $Datafetch = $this->Db = $this->ConexaoDB()->prepare("INSERT INTO `Paciente`(`nome`, `dataNasc`, `cpf`, `email`, `enderecoID`, `telefone`, `celular`, `observacoes`) 
                                                                 VALUES (:nome, :dataNasc, :cpf, :email, :enderecoID, :telefone, :celular, :observacoes)");
         $this->Db->bindParam(":nome", $nome, \PDO::PARAM_STR);
         $this->Db->bindParam(":dataNasc", $dataNasc, \PDO::PARAM_STR);

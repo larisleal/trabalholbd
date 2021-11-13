@@ -45,7 +45,7 @@ Class Caixa {
     /**
      * @return mixed
      */
-    public function geNomePaciente()
+    public function getNomePaciente()
     {
         return $this->nomePaciente;
     }

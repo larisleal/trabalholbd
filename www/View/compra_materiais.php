@@ -58,7 +58,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item">
                         <p class="nav-link">
                             <i class="material-icons" style="font-weight: bold;">supervisor_account</i>
-                        <p style="font-weight: bold;">Pacientes</p>
+                            <p style="font-weight: bold;">Pacientes</p>
                         </p>
                     </li>
                     <li class="nav-item">
@@ -76,7 +76,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item ">
                         <p class="nav-link">
                             <i class="material-icons" style="font-weight: bold;">price_check</i>
-                        <p style="font-weight: bold;">Caixa</p>
+                            <p style="font-weight: bold;">Caixa</p>
                         </p>
                     </li>
                     <li>
@@ -100,7 +100,7 @@ if (session_status() == PHP_SESSION_NONE) {
                     <li class="nav-item ">
                         <p class="nav-link">
                             <i class="material-icons" style="font-weight: bold;">admin_panel_settings</i>
-                        <p style="font-weight: bold;">Painel Admin</p>
+                            <p style="font-weight: bold;">Painel Admin</p>
                         </p>
                     </li>
                     <li class="nav-item ">
@@ -170,18 +170,18 @@ if (session_status() == PHP_SESSION_NONE) {
                                     </p>
                                 </div>
                                 <div class="card-body">
-                                    <form>
-                                        <div class="row">
+                                    <form method="POST" action="<?php echo DIRPAGE . "/inserirmaterial" ?>">
+                                        <div class=" row">
                                             <div class="col-md-6">
                                                 <div class="form-group has-success">
                                                     <label class="bmd-label-floating">Nome do Fornecedor</label>
-                                                    <input type="text" maxlength="11" class="form-control">
+                                                    <input type="text" class="form-control" name="nomeFornecedor">
                                                 </div>
                                             </div>
                                             <div class="col-md-6">
                                                 <div class="form-group has-success">
                                                     <label class="bmd-label-floating">Produto Adquirido</label>
-                                                    <input type="email" class="form-control">
+                                                    <input type="text" class="form-control" name="produto">
                                                 </div>
                                             </div>
                                         </div>
@@ -189,20 +189,20 @@ if (session_status() == PHP_SESSION_NONE) {
                                             <div class="col-md-5">
                                                 <div class="form-group has-success">
                                                     <label class="bmd-label-floating">Quantidade</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="qtd">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-5">
                                                 <div class="form-group has-success">
                                                     <label class="bmd-label-floating">Valor do Item</label>
-                                                    <input type="text" class="form-control">
+                                                    <input type="text" class="form-control" name="valor">
                                                 </div>
                                             </div>
 
                                             <div class="col-md-2">
                                                 <div class="form-group has-success">
-                                                    <input type="date" class="form-control">
+                                                    <input type="date" class="form-control" name="dataCompra">
                                                 </div>
                                             </div>
 
@@ -212,12 +212,12 @@ if (session_status() == PHP_SESSION_NONE) {
                                                 <div class="form-group">
                                                     <div class="form-group has-success">
                                                         <label class="bmd-label-floating"> Observações</label>
-                                                        <textarea class="form-control" rows="5"></textarea>
+                                                        <textarea class="form-control" rows="5" name="observacoesMaterial"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                        <button type="submit" class="btn btn-success pull-right">Inserir</button>
+                                        <button type="submit" class="btn btn-success pull-right" name="addmaterial">Inserir</button>
                                         <div class="clearfix"></div>
                                     </form>
                                 </div>
@@ -274,183 +274,185 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Material Dashboard DEMO methods, don't include it in your project! -->
     <script src="assets/js/demo.js"></script>
     <script>
-    $(document).ready(function() {
-        $().ready(function() {
-            $sidebar = $('.sidebar');
+        $(document).ready(function () {
+            $().ready(function () {
+                $sidebar = $('.sidebar');
 
-            $sidebar_img_container = $sidebar.find('.sidebar-background');
+                $sidebar_img_container = $sidebar.find('.sidebar-background');
 
-            $full_page = $('.full-page');
+                $full_page = $('.full-page');
 
-            $sidebar_responsive = $('body > .navbar-collapse');
+                $sidebar_responsive = $('body > .navbar-collapse');
 
-            window_width = $(window).width();
+                window_width = $(window).width();
 
-            fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
+                fixed_plugin_open = $('.sidebar .sidebar-wrapper .nav li.active a p').html();
 
-            if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
-                if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
-                    $('.fixed-plugin .dropdown').addClass('open');
-                }
-
-            }
-
-            $('.fixed-plugin a').click(function(event) {
-                // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
-                if ($(this).hasClass('switch-trigger')) {
-                    if (event.stopPropagation) {
-                        event.stopPropagation();
-                    } else if (window.event) {
-                        window.event.cancelBubble = true;
+                if (window_width > 767 && fixed_plugin_open == 'Dashboard') {
+                    if ($('.fixed-plugin .dropdown').hasClass('show-dropdown')) {
+                        $('.fixed-plugin .dropdown').addClass('open');
                     }
-                }
-            });
 
-            $('.fixed-plugin .active-color span').click(function() {
-                $full_page_background = $('.full-page-background');
-
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
-
-                var new_color = $(this).data('color');
-
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-color', new_color);
                 }
 
-                if ($full_page.length != 0) {
-                    $full_page.attr('filter-color', new_color);
-                }
+                $('.fixed-plugin a').click(function (event) {
+                    // Alex if we click on switch, stop propagation of the event, so the dropdown will not be hide, otherwise we set the  section active
+                    if ($(this).hasClass('switch-trigger')) {
+                        if (event.stopPropagation) {
+                            event.stopPropagation();
+                        } else if (window.event) {
+                            window.event.cancelBubble = true;
+                        }
+                    }
+                });
 
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.attr('data-color', new_color);
-                }
-            });
+                $('.fixed-plugin .active-color span').click(function () {
+                    $full_page_background = $('.full-page-background');
 
-            $('.fixed-plugin .background-color .badge').click(function() {
-                $(this).siblings().removeClass('active');
-                $(this).addClass('active');
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
 
-                var new_color = $(this).data('background-color');
+                    var new_color = $(this).data('color');
 
-                if ($sidebar.length != 0) {
-                    $sidebar.attr('data-background-color', new_color);
-                }
-            });
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-color', new_color);
+                    }
 
-            $('.fixed-plugin .img-holder').click(function() {
-                $full_page_background = $('.full-page-background');
+                    if ($full_page.length != 0) {
+                        $full_page.attr('filter-color', new_color);
+                    }
 
-                $(this).parent('li').siblings().removeClass('active');
-                $(this).parent('li').addClass('active');
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.attr('data-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .background-color .badge').click(function () {
+                    $(this).siblings().removeClass('active');
+                    $(this).addClass('active');
+
+                    var new_color = $(this).data('background-color');
+
+                    if ($sidebar.length != 0) {
+                        $sidebar.attr('data-background-color', new_color);
+                    }
+                });
+
+                $('.fixed-plugin .img-holder').click(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $(this).parent('li').siblings().removeClass('active');
+                    $(this).parent('li').addClass('active');
 
 
-                var new_image = $(this).find("img").attr('src');
+                    var new_image = $(this).find("img").attr('src');
 
-                if ($sidebar_img_container.length != 0 && $(
-                        '.switch-sidebar-image input:checked').length != 0) {
-                    $sidebar_img_container.fadeOut('fast', function() {
-                        $sidebar_img_container.css('background-image', 'url("' +
-                            new_image + '")');
-                        $sidebar_img_container.fadeIn('fast');
-                    });
-                }
+                    if ($sidebar_img_container.length != 0 && $(
+                            '.switch-sidebar-image input:checked').length != 0) {
+                        $sidebar_img_container.fadeOut('fast', function () {
+                            $sidebar_img_container.css('background-image', 'url("' +
+                                new_image + '")');
+                            $sidebar_img_container.fadeIn('fast');
+                        });
+                    }
 
-                if ($full_page_background.length != 0 && $(
-                        '.switch-sidebar-image input:checked').length != 0) {
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find(
-                        'img').data('src');
+                    if ($full_page_background.length != 0 && $(
+                            '.switch-sidebar-image input:checked').length != 0) {
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find(
+                            'img').data('src');
 
-                    $full_page_background.fadeOut('fast', function() {
+                        $full_page_background.fadeOut('fast', function () {
+                            $full_page_background.css('background-image', 'url("' +
+                                new_image_full_page + '")');
+                            $full_page_background.fadeIn('fast');
+                        });
+                    }
+
+                    if ($('.switch-sidebar-image input:checked').length == 0) {
+                        var new_image = $('.fixed-plugin li.active .img-holder').find("img")
+                            .attr(
+                                'src');
+                        var new_image_full_page = $('.fixed-plugin li.active .img-holder').find(
+                            'img').data('src');
+
+                        $sidebar_img_container.css('background-image', 'url("' + new_image +
+                            '")');
                         $full_page_background.css('background-image', 'url("' +
                             new_image_full_page + '")');
-                        $full_page_background.fadeIn('fast');
-                    });
-                }
-
-                if ($('.switch-sidebar-image input:checked').length == 0) {
-                    var new_image = $('.fixed-plugin li.active .img-holder').find("img").attr(
-                        'src');
-                    var new_image_full_page = $('.fixed-plugin li.active .img-holder').find(
-                        'img').data('src');
-
-                    $sidebar_img_container.css('background-image', 'url("' + new_image + '")');
-                    $full_page_background.css('background-image', 'url("' +
-                        new_image_full_page + '")');
-                }
-
-                if ($sidebar_responsive.length != 0) {
-                    $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
-                }
-            });
-
-            $('.switch-sidebar-image input').change(function() {
-                $full_page_background = $('.full-page-background');
-
-                $input = $(this);
-
-                if ($input.is(':checked')) {
-                    if ($sidebar_img_container.length != 0) {
-                        $sidebar_img_container.fadeIn('fast');
-                        $sidebar.attr('data-image', '#');
                     }
 
-                    if ($full_page_background.length != 0) {
-                        $full_page_background.fadeIn('fast');
-                        $full_page.attr('data-image', '#');
+                    if ($sidebar_responsive.length != 0) {
+                        $sidebar_responsive.css('background-image', 'url("' + new_image + '")');
+                    }
+                });
+
+                $('.switch-sidebar-image input').change(function () {
+                    $full_page_background = $('.full-page-background');
+
+                    $input = $(this);
+
+                    if ($input.is(':checked')) {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar_img_container.fadeIn('fast');
+                            $sidebar.attr('data-image', '#');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page_background.fadeIn('fast');
+                            $full_page.attr('data-image', '#');
+                        }
+
+                        background_image = true;
+                    } else {
+                        if ($sidebar_img_container.length != 0) {
+                            $sidebar.removeAttr('data-image');
+                            $sidebar_img_container.fadeOut('fast');
+                        }
+
+                        if ($full_page_background.length != 0) {
+                            $full_page.removeAttr('data-image', '#');
+                            $full_page_background.fadeOut('fast');
+                        }
+
+                        background_image = false;
+                    }
+                });
+
+                $('.switch-sidebar-mini input').change(function () {
+                    $body = $('body');
+
+                    $input = $(this);
+
+                    if (md.misc.sidebar_mini_active == true) {
+                        $('body').removeClass('sidebar-mini');
+                        md.misc.sidebar_mini_active = false;
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
+
+                    } else {
+
+                        $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
+
+                        setTimeout(function () {
+                            $('body').addClass('sidebar-mini');
+
+                            md.misc.sidebar_mini_active = true;
+                        }, 300);
                     }
 
-                    background_image = true;
-                } else {
-                    if ($sidebar_img_container.length != 0) {
-                        $sidebar.removeAttr('data-image');
-                        $sidebar_img_container.fadeOut('fast');
-                    }
+                    // we simulate the window Resize so the charts will get updated in realtime.
+                    var simulateWindowResize = setInterval(function () {
+                        window.dispatchEvent(new Event('resize'));
+                    }, 180);
 
-                    if ($full_page_background.length != 0) {
-                        $full_page.removeAttr('data-image', '#');
-                        $full_page_background.fadeOut('fast');
-                    }
+                    // we stop the simulation of Window Resize after the animations are completed
+                    setTimeout(function () {
+                        clearInterval(simulateWindowResize);
+                    }, 1000);
 
-                    background_image = false;
-                }
-            });
-
-            $('.switch-sidebar-mini input').change(function() {
-                $body = $('body');
-
-                $input = $(this);
-
-                if (md.misc.sidebar_mini_active == true) {
-                    $('body').removeClass('sidebar-mini');
-                    md.misc.sidebar_mini_active = false;
-
-                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar();
-
-                } else {
-
-                    $('.sidebar .sidebar-wrapper, .main-panel').perfectScrollbar('destroy');
-
-                    setTimeout(function() {
-                        $('body').addClass('sidebar-mini');
-
-                        md.misc.sidebar_mini_active = true;
-                    }, 300);
-                }
-
-                // we simulate the window Resize so the charts will get updated in realtime.
-                var simulateWindowResize = setInterval(function() {
-                    window.dispatchEvent(new Event('resize'));
-                }, 180);
-
-                // we stop the simulation of Window Resize after the animations are completed
-                setTimeout(function() {
-                    clearInterval(simulateWindowResize);
-                }, 1000);
-
+                });
             });
         });
-    });
     </script>
 </body>
 

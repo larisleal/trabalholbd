@@ -158,56 +158,55 @@
                   <p class="card-category">Formulário de Cadastro de Clientes/Pacientes</p>
                 </div>
                 <div class="card-body">
-                  <form>
+                  <form method="POST" action="<?php echo DIRPAGE . "/inserirpaciente" ?>">
                     <div class="row">
                       <div class="col-md-4">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">Nome completo</label>
-                          <input type="text" class="form-control ">
+                          <input type="text" class="form-control" name="nome">
                         </div>
                       </div>
                       <div class="col-md-2">
                         <div class="form-group has-success">
-                          <label class="bmd-label-floating">Data de Nascimento</label>
-                          <input type="text" class="form-control ">
+                          <input type="date" class="form-control" name="dataNasc">
                         </div>
                       </div>
                       <div class="col-md-2">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">CPF</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="cpf">
                         </div>
                       </div>
                       <div class="col-md-4">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">E-mail</label>
-                          <input type="email" class="form-control">
+                          <input type="email" class="form-control" name="email"> 
                         </div>
                       </div>
                     </div>
                     <div class="row">
                       <div class="col-md-6">
                         <div class="form-group has-success">
-                          <label class="bmd-label-floating">Endereço</label>
-                          <input type="text" class="form-control">
+                          <label class="bmd-label-floating">Rua/Avenida</label>
+                          <input type="text" class="form-control" name="rua">
                         </div>
                       </div>
                       <div class="col-md-1">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">Número</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="numero">
                         </div>
                       </div>
                       <div class="col-md-3">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">Bairro</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="bairro">
                         </div>
                       </div>
                       <div class="col-md-2">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">Complemento</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="complemento">
                         </div>
                       </div>
                     </div>
@@ -215,14 +214,14 @@
                       <div class="col-md-6">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">Telefone Fixo</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="telefone">
                         </div>
                       </div>
 
                       <div class="col-md-6">
                         <div class="form-group has-success">
                           <label class="bmd-label-floating">Celular</label>
-                          <input type="text" class="form-control">
+                          <input type="text" class="form-control" name="celular">
                         </div>
                       </div>
                     </div>
@@ -231,14 +230,21 @@
                         <div class="form-group">
                           <div class="form-group has-success">
                             <label class="bmd-label-floating"> Observações importantes sobre o cliente/paciente.</label>
-                            <textarea class="form-control" rows="5"></textarea>
+                            <textarea class="form-control" rows="5" name="observacoes"></textarea>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <button type="submit" class="btn btn-success pull-right">Cadastrar</button>
+                    <button type="submit" class="btn btn-success pull-right" name="addpaciente">Cadastrar</button>
                     <div class="clearfix"></div>
                   </form>
+                  <div class="successinsert">
+                  <?php 
+					            if(isset($_SESSION['inserepaciente']))  {
+					              echo "<br/><div class='alert alert-success' role='alert'> Paciente inserido com sucesso! </div>";  
+					            }
+                  ?>
+                </div>
                 </div>
               </div>
             </div>

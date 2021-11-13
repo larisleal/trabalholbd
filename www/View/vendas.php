@@ -1,3 +1,15 @@
+<?php 
+
+    if(isset($_SESSION['vendasarray'])) {
+        $vendasArray = unserialize($_SESSION['vendasarray']);
+    }
+    
+    if(session_status() == PHP_SESSION_NONE){
+      session_start();
+    }
+
+?>
+
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -161,155 +173,34 @@
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead class="text-warning">
-                        <th>
-                          ID
-                        </th>
-                        <th>
-                          Nome Paciente
-                        </th>
-                        <th>
-                          Data
-                        </th>
-                        <th>
-                          Valor
-                        </th>
-                        <th>
-                          Ações
-                        </th>
+                        <th>ID</th>
+                        <th>Procedimento</th>
+                        <th>Nome Paciente</th>
+                        <th>Data</th>
+                        <th>Valor</th>
+                        <th>Ações</th>
                       </thead>
                       <tbody>
+                        <?php foreach($vendasArray as $value) { ?>
                         <tr>
-                          <td>
-                            1
-                          </td>
-                          <td>
-                            Dakota Rice
-                          </td>
-                          <td>
-                            dd/mm/aaaa
-                          </td>
-                          <td>
-                            100,00
-                          </td>
+                          <td><?php echo $value->getId(); ?></td>
+                          <td><?php echo $value->getProcedimento(); ?></td>
+                          <td><?php echo $value->getNomePaciente(); ?></td>
+                          <td><?php echo $value->getDataProcedimento(); ?></td>
+                          <td><?php echo $value->getValor(); ?></td>
                           <td>
                             <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
                               <i class="material-icons">edit</i>
                             </button>
-                            <button type="button" rel="tooltip" title="Apagar" class="btn btn-danger btn-link btn-sm">
-                              <i class="material-icons">close</i>
-                            </button>
+                            <form method="POST" action="<?php echo DIRPAGE . "/removervenda"?>">
+                              <input name="vendaID" value="<?php echo $value->getId(); ?>" type="hidden" class="form-control" id="vendaID">
+                              <button type="submit" rel="tooltip" title="Remover" name="delete" class="btn btn-danger btn-link btn-sm">
+                                <i class="material-icons">close</i>
+                              </button>
+                            </form>
                           </td>
                         </tr>
-                        <tr>
-                          <td>
-                            2
-                          </td>
-                          <td>
-                            Minerva Hooper
-                          </td>
-                          <td>
-                            dd/mm/aaaa
-                          </td>
-                          <td>
-                            1.000,00
-                          </td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
-                              <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" rel="tooltip" title="Apagar" class="btn btn-danger btn-link btn-sm">
-                              <i class="material-icons">close</i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            3
-                          </td>
-                          <td>
-                            Sage Rodriguez
-                          </td>
-                          <td>
-                            dd/mm/aaaa
-                          </td>
-                          <td>
-                            400,00
-                          </td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
-                              <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" rel="tooltip" title="Apagar" class="btn btn-danger btn-link btn-sm">
-                              <i class="material-icons">close</i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            4
-                          </td>
-                          <td>
-                            Philip Chaney
-                          </td>
-                          <td>
-                            dd/mm/aaaa
-                          </td>
-                          <td>
-                            2.000,00
-                          </td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
-                              <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" rel="tooltip" title="Apagar" class="btn btn-danger btn-link btn-sm">
-                              <i class="material-icons">close</i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            5
-                          </td>
-                          <td>
-                            Doris Greene
-                          </td>
-                          <td>
-                            dd/mm/aaaa
-                          </td>
-                          <td>
-                            120,00
-                          </td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
-                              <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" rel="tooltip" title="Apagar" class="btn btn-danger btn-link btn-sm">
-                              <i class="material-icons">close</i>
-                            </button>
-                          </td>
-                        </tr>
-                        <tr>
-                          <td>
-                            6
-                          </td>
-                          <td>
-                            Mason Porter
-                          </td>
-                          <td>
-                            dd/mm/aaaa
-                          </td>
-                          <td>
-                            450,00
-                          </td>
-                          <td>
-                            <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
-                              <i class="material-icons">edit</i>
-                            </button>
-                            <button type="button" rel="tooltip" title="Apagar" class="btn btn-danger btn-link btn-sm">
-                              <i class="material-icons">close</i>
-                            </button>
-                          </td>
-                        </tr>
+                        <?php } ?>
                       </tbody>
                     </table>
                   </div>

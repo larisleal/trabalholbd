@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 12/11/2021 às 23:34
+-- Tempo de geração: 13/11/2021 às 17:48
 -- Versão do servidor: 10.4.20-MariaDB
 -- Versão do PHP: 7.4.22
 
@@ -20,8 +20,6 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `trablbd`
 --
-CREATE DATABASE IF NOT EXISTS `trablbd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `trablbd`;
 
 -- --------------------------------------------------------
 
@@ -39,6 +37,15 @@ CREATE TABLE `Caixa` (
   `observacaoVenda` varchar(255) NOT NULL,
   `vendaID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Despejando dados para a tabela `Caixa`
+--
+
+INSERT INTO `Caixa` (`nomePaciente`, `cpfPaciente`, `emailPaciente`, `procedimento`, `dataProcedimento`, `valor`, `observacaoVenda`, `vendaID`) VALUES
+('Camila Minei', '0000000', 'camis@teste.com', 'Banho de sal grosso e terapia', '2021-11-13', 3000, 'Vai precisar depois desse semestre louco', 3),
+('Gabriel Wioiajdokamdo', '0000000011', 'gabriel@teste.com', 'Terapia intensiva e reza braba', '2021-11-14', 4500, 'Foda.', 4),
+('Larissa Leal ', '83409238409', 'larissa@teste.com', 'Exorcismo', '2021-11-14', 200, 'Obs.', 5);
 
 -- --------------------------------------------------------
 
@@ -85,7 +92,7 @@ CREATE TABLE `Paciente` (
   `telefone` varchar(255) NOT NULL,
   `celular` varchar(255) NOT NULL,
   `observacoes` int(11) NOT NULL,
-  `enderecoPaciente` int(11) NOT NULL
+  `enderecoID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -131,7 +138,7 @@ ALTER TABLE `Material`
 --
 ALTER TABLE `Paciente`
   ADD PRIMARY KEY (`cpf`),
-  ADD UNIQUE KEY `enderecoPaciente` (`enderecoPaciente`),
+  ADD UNIQUE KEY `enderecoPaciente` (`enderecoID`),
   ADD UNIQUE KEY `id` (`pacienteID`);
 
 --
@@ -149,7 +156,7 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT de tabela `Caixa`
 --
 ALTER TABLE `Caixa`
-  MODIFY `vendaID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `vendaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `Material`
@@ -171,7 +178,7 @@ ALTER TABLE `Paciente`
 -- Restrições para tabelas `Paciente`
 --
 ALTER TABLE `Paciente`
-  ADD CONSTRAINT `paciente_endereco_FK` FOREIGN KEY (`enderecoPaciente`) REFERENCES `Endereco` (`enderecoID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `paciente_endereco_FK` FOREIGN KEY (`enderecoID`) REFERENCES `Endereco` (`enderecoID`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
