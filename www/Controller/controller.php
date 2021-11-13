@@ -1,11 +1,14 @@
-<?php 
+<?php
+
 namespace Controller;
+
 include_once('Model/Paciente.php');
 include_once('Model/PacienteEndereco.php');
 include_once('Model/Endereco.php');
 include_once('Model/Caixa.php');
 include_once('Model/Material.php');
 include_once('Model/Usuario.php');
+
 use Model\Paciente;
 use Model\PacienteEndereco;
 use Model\Endereco;
@@ -14,70 +17,99 @@ use Model\Material;
 use Model\Usuario;
 
 
-class Controller    {
-    
-public function init() {
-    
-    if (isset($_GET['page'])) {
-        $f = $_GET['page'];
-    }
-    else 
-        $f = "";
-    
-    
-    //ROTAS
+class Controller
+{
 
-  }
-    public function index() {
+    public function init()
+    {
+
+        if (isset($_GET['page'])) {
+            $f = $_GET['page'];
+        } else
+            $f = "";
+
+
+        //ROTAS
+
+    }
+    public function index()
+    {
         require 'View/index.php';
     }
-  
-    public function dashboard() {
+
+    public function dashboard()
+    {
         require 'View/dashboard.php';
     }
 
-  
+
     //REQUIRE DE PÁGINAS DE ACORDO COM AS ROTAS
 
     //Pacientes
-    public function inserePaciente() {
+    public function inserePaciente()
+    {
+        //     //array de pacientes
+        //     $pacientes = new pacientesActions();
+        //     $pacientesArray = $pacientes->selectAllPacientes();
+        //     $_SESSION['pacientesarray']=serialize($pacientesArray);
+
+        //     //array de endereços
+        //     $enderecos = new enderecosActions();
+        //     $enderecosArray = $enderecos->selectAllEnderecos();
+        //     $_SESSION['enderecosarray']=serialize($enderecosArray);
+
         require 'View/inserir_paciente.php';
     }
 
-    public function visualizaPaciente() {
+    public function visualizaPaciente()
+    {
 
-    //     //array de pacientes
-    //     $pacientes = new pacientesActions();
-    //     $pacientesArray = $pacientes->selectAllPacientes();
-    //     $_SESSION['pacientesarray']=serialize($pacientesArray);
 
-    //     //array de endereços
-    //     $enderecos = new enderecosActions();
-    //     $enderecosArray = $enderecos->selectAllEnderecos();
-    //     $_SESSION['enderecosarray']=serialize($enderecosArray);
 
         require 'View/pacientes.php';
     }
 
     //Caixa
-    public function insereVenda() {
+    public function insereVenda()
+    {
+        //     //array de caixa
+        //     $caixa = new caixaActions();
+        //     $caixaArray = $caixa->selectAllCaixa();
+        //     $_SESSION['caixaArray']=serialize($caixaArray);
+
         require 'View/inserir_venda.php';
     }
 
-    public function visualizaVenda() {
+    public function visualizaVenda()
+    {
         require 'View/vendas.php';
     }
 
-    public function insereMaterial() {
+    //Materiais
+    public function insereMaterial()
+    {
+        //     //array de materiais
+        //     $materiais = new materiaisActions();
+        //     $materiaisArray = $materiais->selectAllMateriais();
+        //     $_SESSION['materiaisArray']=serialize($materiaisArray);
+
         require 'View/compra_materiais.php';
     }
 
     //Painel Admin
-    public function relatorios() {
+    public function relatorios()
+    {
+
         require 'View/relatorios.php';
     }
 
-    public function insereUsuario() {
+    public function insereUsuario()
+    {
+        //     //array de usuários
+        //     $usuarios = new usuariosActions();
+        //     $usuariosArray = $usuarios->selectAllUsuarios();
+        //     $_SESSION['usuariosArray']=serialize($usuariosArray);
+
         require 'View/inserir_usuario.php';
     }
 
@@ -118,7 +150,7 @@ public function init() {
     // public function goSharedLists() {
     //     require 'View/listas-compartilhadas.php';
     // }
-    
+
     // public function gotelalogin() {
     //     require 'View/login.php';
     // }
@@ -126,16 +158,16 @@ public function init() {
     // public function goLogin() {
     //     require 'View/login.php';
     // }
-  
+
 
 
     // -------------------------------- CRUDS ------------------------------------------------------------------------------------
-    
+
 
     //INSERE PACIENTE
     // public function inserePaciente() {
 
- 
+
     //     if(isset($_POST['addpaciente'])) {
 
     //         $nome = $_POST['nome'];
@@ -147,8 +179,8 @@ public function init() {
     //         if($value == true){
     //             $_SESSION["taskinsert"]='true';
     //             header("Location: " . DIRPAGE . "/mytasks");
-               
-               
+
+
     //         }
     //         else {
     //             header("Location: " . DIRPAGE . "/mytasks");
@@ -170,7 +202,7 @@ public function init() {
     //         if($value == true){ 
     //             $_SESSION["taginsert"]='true';
     //             header("Location: " . DIRPAGE . "/mytags");
-                
+
     //         }
     //         else {
     //             header("Location: " . DIRPAGE . "/mytags");
@@ -181,7 +213,7 @@ public function init() {
 
     //REMOVE TAREFA
     // public function removeTarefa(){
-        
+
 
     //     if(isset($_POST['delete'])){
 
@@ -196,7 +228,7 @@ public function init() {
     //    exit;
     // }
 
-    
+
     //REMOVE ETIQUETA
     // public function removeEtiqueta(){
 
@@ -204,7 +236,7 @@ public function init() {
 
     //         $etiquetaID = $_POST['etiquetaID'];
 
-    
+
     //         $etiquetaAct = new etiquetasActions();
     //         $etiquetaAct->removeEtiquetas($etiquetaID);
     //         header("Location: " . DIRPAGE . "/mytags");
