@@ -45,26 +45,53 @@ class Controller
 
     //REQUIRE DE PÁGINAS DE ACORDO COM AS ROTAS
 
-    //Pacientes
+    //Insere Paciente
     public function inserePaciente()
     {
-        //     //array de pacientes
-        //     $pacientes = new pacientesActions();
-        //     $pacientesArray = $pacientes->selectAllPacientes();
-        //     $_SESSION['pacientesarray']=serialize($pacientesArray);
+        if (isset($_POST['addpaciente'])) {
 
-        //     //array de endereços
-        //     $enderecos = new enderecosActions();
-        //     $enderecosArray = $enderecos->selectAllEnderecos();
-        //     $_SESSION['enderecosarray']=serialize($enderecosArray);
+            $nome = $_POST['nome'];
+            $dataNasc = $_POST['dataNasc'];
+            $cpf = $_POST['cpf'];
+            $telefone = $_POST['telefone'];
+            $celular = $_POST['celular'];
+            $observacoes = $_POST['observacoes'];
+
+
+            $pacientesActions = new pacientesActions();
+            $value = $pacientesActions->insertTarefas(
+                $nome,
+                $dataNasc,
+                $cpf,
+                $telefone,
+                $celular,
+                $observacoes
+            );
+
+            if ($value == true) {
+                $_SESSION["taskinsert"] = 'true';
+                header("Location: " . DIRPAGE . "/mytasks");
+            } else {
+                header("Location: " . DIRPAGE . "/mytasks");
+                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir paciente, tente novamente. </div>";
+            }
+        }
+
 
         require 'View/inserir_paciente.php';
     }
 
     public function visualizaPaciente()
     {
+        //     //array de pacientes
+        $pacientes = new pacientesActions();
+        $pacientesArray = $pacientes->selectAllPacientes();
+        $_SESSION['pacientesarray'] = serialize($pacientesArray);
 
-
+        //array de endereços
+        $enderecos = new enderecosActions();
+        $enderecosArray = $enderecos->selectAllEnderecos();
+        $_SESSION['enderecosarray'] = serialize($enderecosArray);
 
         require 'View/pacientes.php';
     }
@@ -72,26 +99,85 @@ class Controller
     //Caixa
     public function insereVenda()
     {
-        //     //array de caixa
-        //     $caixa = new caixaActions();
-        //     $caixaArray = $caixa->selectAllCaixa();
-        //     $_SESSION['caixaArray']=serialize($caixaArray);
+        if (isset($_POST['addvenda'])) {
+
+            $nomePac = $_POST['nomePac'];
+            $pcfp = $_POST['pcpf'];
+            $email = $_POST['email'];
+            $procedimento = $_POST['procedimento'];
+            $dataProcedimento = $_POST['dataProcedimento'];
+            $valor = $_POST['valor'];
+            $observacoesVenda = $_POST['observacoesVenda'];
+
+
+            $materiaisActions = new materiaisActions();
+            $value = $materiaisActions->insertTarefas(
+                $nomePac,
+                $pcfp,
+                $email,
+                $procedimento,
+                $dataProcedimento,
+                $valor,
+                $observacoesVenda
+            );
+
+            if ($value == true) {
+                $_SESSION["taskinsert"] = 'true';
+                header("Location: " . DIRPAGE . "/mytasks");
+            } else {
+                header("Location: " . DIRPAGE . "/mytasks");
+                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir material, tente novamente. </div>";
+            }
+        }
+
 
         require 'View/inserir_venda.php';
     }
 
     public function visualizaVenda()
     {
+        //array de caixa
+        //     $caixa = new caixaActions();
+        //     $caixaArray = $caixa->selectAllCaixa();
+        //     $_SESSION['caixaarray']=serialize($caixaArray);
+
         require 'View/vendas.php';
     }
 
     //Materiais
     public function insereMaterial()
     {
+        if (isset($_POST['addMateriais'])) {
+
+            $nomeFornecedor = $_POST['nomeFornecedor'];
+            $produto = $_POST['produto'];
+            $valor = $_POST['valor'];
+            $dataCompra = $_POST['dataCompra'];
+            $observacoesMat = $_POST['observacoesMat'];
+
+
+            $pacientesActions = new pacientesActions();
+            $value = $pacientesActions->insertTarefas(
+                $nomeFornecedor,
+                $produto,
+                $valor,
+                $dataCompra,
+                $observacoesMat
+            );
+
+            if ($value == true) {
+                $_SESSION["taskinsert"] = 'true';
+                header("Location: " . DIRPAGE . "/mytasks");
+            } else {
+                header("Location: " . DIRPAGE . "/mytasks");
+                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir paciente, tente novamente. </div>";
+            }
+        }
+
         //     //array de materiais
         //     $materiais = new materiaisActions();
         //     $materiaisArray = $materiais->selectAllMateriais();
-        //     $_SESSION['materiaisArray']=serialize($materiaisArray);
+        //     $_SESSION['materiaisarray']=serialize($materiaisArray);
 
         require 'View/compra_materiais.php';
     }
@@ -105,10 +191,38 @@ class Controller
 
     public function insereUsuario()
     {
+        if (isset($_POST['addUsuarios'])) {
+
+            $nome_user = $_POST['nomeFornecedor'];
+            $cpf_user = $_POST['cpf_user'];
+            $email_user = $_POST['email_user'];
+            $user = $_POST['user'];
+            $senha = $_POST['senha'];
+            $adm = $_POST['adm'];
+
+
+            $usuariosActions = new usuariosActions();
+            $value = $usuariosActions->insertTarefas(
+                $nome_user,
+                $cpf_user,
+                $email_user,
+                $user,
+                $senha,
+                $adm
+            );
+
+            if ($value == true) {
+                $_SESSION["taskinsert"] = 'true';
+                header("Location: " . DIRPAGE . "/mytasks");
+            } else {
+                header("Location: " . DIRPAGE . "/mytasks");
+                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir paciente, tente novamente. </div>";
+            }
+        }
         //     //array de usuários
         //     $usuarios = new usuariosActions();
         //     $usuariosArray = $usuarios->selectAllUsuarios();
-        //     $_SESSION['usuariosArray']=serialize($usuariosArray);
+        //     $_SESSION['usuariosarray']=serialize($usuariosArray);
 
         require 'View/inserir_usuario.php';
     }
