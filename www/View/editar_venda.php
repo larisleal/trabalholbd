@@ -165,8 +165,8 @@
                         <div class="col-md">
                             <div class="card">
                                 <div class="card-header card-header-warning">
-                                    <h4 class="card-title">Inserir Novo Item</h4>
-                                    <p class="card-category">Inserção de itens de venda e consultas</p>
+                                    <h4 class="card-title">Editar Item</h4>
+                                    <p class="card-category">Editar vendas e procedimentos</p>
                                 </div>
                                 <div class="card-body">
                                     <form method="POST" action="<?php echo DIRPAGE . "/inserirvenda" ?>">

@@ -169,7 +169,7 @@
                   <h4 class="card-title mt-0"> Itens e Consultas</h4>
                   <p class="card-category"> Tabela de itens vendidos, procedimentos e consultas</p>
                 </div>
-                <div class="card-body">
+                <div class="card-content table-responsive table-full-width">
                   <div class="table-responsive">
                     <table class="table table-hover">
                       <thead class="text-warning">
@@ -189,9 +189,11 @@
                           <td><?php echo $value->getDataProcedimento(); ?></td>
                           <td><?php echo $value->getValor(); ?></td>
                           <td>
-                            <button type="button" rel="tooltip" title="Editar" class="btn btn-warning btn-link btn-sm">
-                              <i class="material-icons">edit</i>
-                            </button>
+                            <form method="POST" action="<?php echo DIRPAGE . "/editavenda"?>">
+                              <button type="button" rel="tooltip" title="Editar" name="editar" class="btn btn-warning btn-link btn-sm">
+                                <i class="material-icons">edit</i>
+                              </button>
+                            </form>
                             <form method="POST" action="<?php echo DIRPAGE . "/removervenda"?>">
                               <input name="vendaID" value="<?php echo $value->getId(); ?>" type="hidden" class="form-control" id="vendaID">
                               <button type="submit" rel="tooltip" title="Remover" name="delete" class="btn btn-danger btn-link btn-sm">

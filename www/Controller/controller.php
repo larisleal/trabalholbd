@@ -12,6 +12,7 @@ include_once('Model/Usuario.php');
 include_once('Model/pacientesActions.php');
 include_once('Model/vendasActions.php');
 include_once('Model/materiaisActions.php');
+include_once('Model/usuariosActions.php');
 
 use Model\Paciente;
 use Model\PacienteEndereco;
@@ -23,6 +24,7 @@ use Model\Usuario;
 use Model\pacientesActions;
 use Model\vendasActions;
 use Model\materiaisActions;
+use Model\usuariosActions;
 
 
 class Controller
@@ -54,6 +56,10 @@ class Controller
     //REQUIRE DE PÁGINAS DE ACORDO COM AS ROTAS
 
     
+    public function inserePaciente() {
+        require 'View/inserir_paciente.php';
+    }
+
 
     // public function visualizaPaciente()
     // {
@@ -89,6 +95,11 @@ class Controller
         require 'View/vendas.php';
     }
 
+    public function editaVenda() {
+
+        require 'View/editar_venda.php';
+    }
+
     public function insereMaterial()
     {
 
@@ -103,6 +114,11 @@ class Controller
         require 'View/relatorios.php';
     }
 
+    public function insereUsuario()
+    {
+
+        require 'View/inserir_usuario.php';
+    }
     
 
 
@@ -118,26 +134,26 @@ class Controller
             $dataNasc = $_POST['dataNasc'];
             $cpf = $_POST['cpf'];
             $email = $_POST['email'];
-            $enderecoID = $_POST['enderecoID'];
             $telefone = $_POST['telefone'];
             $celular = $_POST['celular'];
             $observacoes = $_POST['observacoes'];
+            $enderecoID = $_POST['enderecoID'];
 
 
             $pacientesActions = new pacientesActions();
-            $value = $pacientesActions->inserePaciente(
+            $value = $pacientesActions->insertPaciente(
                 $nome, 
                 $dataNasc, 
                 $cpf, 
                 $email, 
-                $enderecoID, 
                 $telefone, 
                 $celular, 
-                $observacoes
+                $observacoes,
+                $enderecoID
             );
 
             if ($value == true) {
-                $_SESSION["inserepaciente"] = 'true';
+                $_SESSION["addpaciente"] = 'true';
                 header("Location: " . DIRPAGE . "/inserepaciente");
             } else {
                 header("Location: " . DIRPAGE . "/inserepaciente");
@@ -186,25 +202,8 @@ class Controller
 
         require 'View/inserir_venda.php';
     }
-
-     //REMOVE VENDA
-     public function removerVenda(){
-
-        if(isset($_POST['delete'])){
-                
-            $vendaID = $_POST['vendaID'];
-
     
-            $vendaAct = new vendasActions();
-            $vendaAct->removeVenda($vendaID);
-            header("Location: " . DIRPAGE . "/visualizavenda");
-            exit;
-       }
-       header("Location: " . DIRPAGE . "/visualizavenda");
-       exit;
-    }
-
-     //INSERE MATERIAL
+    //INSERE MATERIAL
     public function inserirMaterial() {
 
         if (isset($_POST['addmaterial'])) {
@@ -239,43 +238,96 @@ class Controller
         require 'View/compra_materiais.php';
     }
 
-    // public function insereUsuario()
-    // {
-    //     if (isset($_POST['addUsuarios'])) {
+    //INSERE USUARIO
+    public function inserirUsuario() {
 
-    //         $nome_user = $_POST['nomeFornecedor'];
-    //         $cpf_user = $_POST['cpf_user'];
-    //         $email_user = $_POST['email_user'];
-    //         $user = $_POST['user'];
-    //         $senha = $_POST['senha'];
-    //         $adm = $_POST['adm'];
+        if (isset($_POST['addusuario'])) {
+
+            $nomeUsuario = $_POST['nomeUsuario'];
+            $cpfUsuario = $_POST['cpfUsuario'];
+            $emailUsuario = $_POST['emailUsuario'];
+            $usuario = $_POST['usuario'];
+            $senha = $_POST['senha'];
+            $tipoUsuario = $_POST['tipoUsuario'];
 
 
-    //         $usuariosActions = new usuariosActions();
-    //         $value = $usuariosActions->insertTarefas(
-    //             $nome_user,
-    //             $cpf_user,
-    //             $email_user,
-    //             $user,
-    //             $senha,
-    //             $adm
-    //         );
+            $usuariosActions = new usuariosActions();
+            $value = $usuariosActions->insertUsuario(
+                $nomeUsuario,
+                $cpfUsuario,
+                $emailUsuario,
+                $usuario,
+                $senha,
+                $tipoUsuario
+            );
 
-    //         if ($value == true) {
-    //             $_SESSION["taskinsert"] = 'true';
-    //             header("Location: " . DIRPAGE . "/mytasks");
-    //         } else {
-    //             header("Location: " . DIRPAGE . "/mytasks");
-    //             echo "<div class='alert alert-danger' role='alert'> Falha ao inserir usuario, tente novamente. </div>";
-    //         }
-    //     }
-    //     //     //array de usuários
-    //     //     $usuarios = new usuariosActions();
-    //     //     $usuariosArray = $usuarios->selectAllUsuarios();
-    //     //     $_SESSION['usuariosarray']=serialize($usuariosArray);
+            if ($value == true) {
+                $_SESSION["usuarioinsert"] = 'true';
+                header("Location: " . DIRPAGE . "/insereusuario");
+            } else {
+                header("Location: " . DIRPAGE . "/insereusuario");
+                echo "<div class='alert alert-danger' role='alert'> Falha ao inserir usuario, tente novamente. </div>";
+            }
+        }
+        //     //array de usuários
+        //     $usuarios = new usuariosActions();
+        //     $usuariosArray = $usuarios->selectAllUsuarios();
+        //     $_SESSION['usuariosarray']=serialize($usuariosArray);
 
-    //     require 'View/inserir_usuario.php';
-    // }
+        require 'View/inserir_usuario.php';
+    }
+
+
+     //REMOVE VENDA
+     public function removerVenda(){
+
+        if(isset($_POST['delete'])){
+                
+            $vendaID = $_POST['vendaID'];
+
+    
+            $vendaAct = new vendasActions();
+            $vendaAct->removeVenda($vendaID);
+            header("Location: " . DIRPAGE . "/visualizavenda");
+            exit;
+       }
+       header("Location: " . DIRPAGE . "/visualizavenda");
+       exit;
+    }
+
+    //EDIT VENDA
+    public function editarVenda(){
+
+        if(isset($_POST['editarvenda'])){
+                    
+            $vendaID = $_POST['vendaID'];
+            $nomePaciente = $_POST['nomePaciente'];
+            $cpfPaciente = $_POST['cpfPaciente'];
+            $emailPaciente = $_POST['emailPaciente'];
+            $procedimento = $_POST['procedimento'];
+            $dataProcedimento = $_POST['dataProcedimento'];
+            $valor = $_POST['valor'];
+            $observacaoVenda = $_POST['observacaoVenda'];
+
+    
+            $caixa = new Caixa($vendaID, $nomePaciente, $cpfPaciente, $emailPaciente, $procedimento, $dataProcedimento, $valor, $observacaoVenda);
+            $editVenda = new vendasActions();
+
+            if($editVenda->editVenda($caixa)){
+                header("Location: " . DIRPAGE . "/visualizavenda");
+                exit;
+            }
+            else {
+                header("Location: " . DIRPAGE . "/visualizavenda");
+                exit;
+            }
+        }
+        else {
+            header("Location: " . DIRPAGE . "/visualizavenda");
+            exit;
+        }
+    }
+     
 
 
    

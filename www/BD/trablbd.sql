@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 13/11/2021 às 17:48
+-- Tempo de geração: 14/11/2021 às 05:24
 -- Versão do servidor: 10.4.20-MariaDB
 -- Versão do PHP: 7.4.22
 
@@ -20,6 +20,8 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `trablbd`
 --
+CREATE DATABASE IF NOT EXISTS `trablbd` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `trablbd`;
 
 -- --------------------------------------------------------
 
@@ -45,7 +47,8 @@ CREATE TABLE `Caixa` (
 INSERT INTO `Caixa` (`nomePaciente`, `cpfPaciente`, `emailPaciente`, `procedimento`, `dataProcedimento`, `valor`, `observacaoVenda`, `vendaID`) VALUES
 ('Camila Minei', '0000000', 'camis@teste.com', 'Banho de sal grosso e terapia', '2021-11-13', 3000, 'Vai precisar depois desse semestre louco', 3),
 ('Gabriel Wioiajdokamdo', '0000000011', 'gabriel@teste.com', 'Terapia intensiva e reza braba', '2021-11-14', 4500, 'Foda.', 4),
-('Larissa Leal ', '83409238409', 'larissa@teste.com', 'Exorcismo', '2021-11-14', 200, 'Obs.', 5);
+('Larissa Leal ', '83409238409', 'larissa@teste.com', 'Exorcismo', '2021-11-14', 200, 'Obs.', 5),
+('333', '3333', 'dd@vom', 'sdfsf', '2021-11-02', 333, 'assdfs', 10);
 
 -- --------------------------------------------------------
 
@@ -58,7 +61,8 @@ CREATE TABLE `Endereco` (
   `numero` int(11) NOT NULL,
   `bairro` varchar(255) NOT NULL,
   `complemento` int(11) NOT NULL,
-  `enderecoID` int(11) NOT NULL
+  `enderecoID` int(11) NOT NULL,
+  `cpfPaciente` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -77,6 +81,13 @@ CREATE TABLE `Material` (
   `materialID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Despejando dados para a tabela `Material`
+--
+
+INSERT INTO `Material` (`nomeFornecedor`, `produto`, `qtd`, `valor`, `dataCompra`, `observacoesMaterial`, `materialID`) VALUES
+('fornecedor', 'produto', 1, 22, '2023-03-02', 'obs', 1);
+
 -- --------------------------------------------------------
 
 --
@@ -91,8 +102,7 @@ CREATE TABLE `Paciente` (
   `email` varchar(255) DEFAULT NULL,
   `telefone` varchar(255) NOT NULL,
   `celular` varchar(255) NOT NULL,
-  `observacoes` int(11) NOT NULL,
-  `enderecoID` int(11) NOT NULL
+  `observacoes` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
@@ -112,6 +122,13 @@ CREATE TABLE `Usuario` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
+-- Despejando dados para a tabela `Usuario`
+--
+
+INSERT INTO `Usuario` (`usuarioID`, `nomeUsuario`, `cpfUsuario`, `emailUsuario`, `usuario`, `senha`, `tipoUsuario`) VALUES
+(1, 'nome user', '1223', 'emai@gmail.com', 'user', '1234', 'funcionario');
+
+--
 -- Índices para tabelas despejadas
 --
 
@@ -125,7 +142,8 @@ ALTER TABLE `Caixa`
 -- Índices de tabela `Endereco`
 --
 ALTER TABLE `Endereco`
-  ADD PRIMARY KEY (`enderecoID`);
+  ADD PRIMARY KEY (`enderecoID`),
+  ADD KEY `pacienteFK` (`cpfPaciente`);
 
 --
 -- Índices de tabela `Material`
@@ -138,7 +156,6 @@ ALTER TABLE `Material`
 --
 ALTER TABLE `Paciente`
   ADD PRIMARY KEY (`cpf`),
-  ADD UNIQUE KEY `enderecoPaciente` (`enderecoID`),
   ADD UNIQUE KEY `id` (`pacienteID`);
 
 --
@@ -156,13 +173,13 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT de tabela `Caixa`
 --
 ALTER TABLE `Caixa`
-  MODIFY `vendaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `vendaID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT de tabela `Material`
 --
 ALTER TABLE `Material`
-  MODIFY `materialID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `materialID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de tabela `Paciente`
@@ -171,14 +188,20 @@ ALTER TABLE `Paciente`
   MODIFY `pacienteID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT de tabela `Usuario`
+--
+ALTER TABLE `Usuario`
+  MODIFY `usuarioID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- Restrições para tabelas despejadas
 --
 
 --
--- Restrições para tabelas `Paciente`
+-- Restrições para tabelas `Endereco`
 --
-ALTER TABLE `Paciente`
-  ADD CONSTRAINT `paciente_endereco_FK` FOREIGN KEY (`enderecoID`) REFERENCES `Endereco` (`enderecoID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `Endereco`
+  ADD CONSTRAINT `pacienteFK` FOREIGN KEY (`cpfPaciente`) REFERENCES `Paciente` (`cpf`) ON DELETE CASCADE ON UPDATE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

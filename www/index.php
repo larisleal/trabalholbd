@@ -28,6 +28,7 @@ class Route{
         $this->routes['/visualizapaciente'] = array('controller' => 'Controller', 'action' => 'visualizaPaciente');
         $this->routes['/inserevenda'] = array('controller' => 'Controller', 'action' => 'insereVenda');
         $this->routes['/visualizavenda'] = array('controller' => 'Controller', 'action' => 'visualizaVenda');
+        $this->routes['/editavenda'] = array('controller' => 'Controller', 'action' => 'editaVenda');
         $this->routes['/inserematerial'] = array('controller' => 'Controller', 'action' => 'insereMaterial');
         $this->routes['/relatorios'] = array('controller' => 'Controller', 'action' => 'relatorios');
         $this->routes['/insereusuario'] = array('controller' => 'Controller', 'action' => 'insereUsuario');
@@ -35,8 +36,10 @@ class Route{
         //funções
         $this->routes['/inserirpaciente'] = array('controller' => 'Controller', 'action' => 'inserirPaciente');
         $this->routes['/inserirvenda'] = array('controller' => 'Controller', 'action' => 'inserirVenda');
+        $this->routes['/editarvenda'] = array('controller' => 'Controller', 'action' => 'editarVenda');         
         $this->routes['/removervenda'] = array('controller' => 'Controller', 'action' => 'removerVenda');
         $this->routes['/inserirmaterial'] = array('controller' => 'Controller', 'action' => 'inserirMaterial');
+        $this->routes['/inserirusuario'] = array('controller' => 'Controller', 'action' => 'inserirUsuario');
 
     }
 

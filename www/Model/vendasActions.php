@@ -43,6 +43,26 @@ class vendasActions extends ConexaoDB{
         return $this->Db->execute();
     }
 
+    //EDIT VEMDA
+    public function editVenda(Caixa $caixa)
+    {
+        $this->Db = $this->ConexaoDB()->prepare("UPDATE Caixa 
+        SET nomePaciente=:nomePaciente, cpfPaciente=:cpfPaciente, emailPaciente=:emailPaciente, procedimento=:procedimento, 
+        dataProcedimento=:dataProcedimento, valor=:valor, observacaoVenda=:observacaoVenda WHERE vendaID=:vendaID");
+        $this->Db->bindValue(":vendaID", $caixa->getId(), \PDO::PARAM_INT);
+        $this->Db->bindValue(":nomePaciente", $caixa->getNomePaciente(), \PDO::PARAM_STR);
+        $this->Db->bindValue(":cpfPaciente", $caixa->getCpfPaciente(), \PDO::PARAM_STR);
+        $this->Db->bindValue(":emailPaciente", $caixa->getEmailPaciente(), \PDO::PARAM_STR);
+        $this->Db->bindValue(":procedimento", $caixa->getProcedimento(), \PDO::PARAM_STR);
+        $this->Db->bindValue(":dataProcedimento", $caixa->getDataProcedimento(), \PDO::PARAM_STR);
+        $this->Db->bindValue(":valor", $caixa->getValor(), \PDO::PARAM_STR);
+        $this->Db->bindValue(":observacaoVenda", $caixa->getObservacaoVenda(), \PDO::PARAM_STR);
+        
+        return $this->Db->execute();
+
+        
+    }
+
     //SELECT VENDA
     public function selectAllVendas() {
 

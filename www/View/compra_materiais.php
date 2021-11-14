@@ -1,15 +1,3 @@
-<?php
-
-if (isset($_SESSION['materiaisarray'])) {
-  $materiaisArray = unserialize($_SESSION['materiaisarray']);
-}
-
-if (session_status() == PHP_SESSION_NONE) {
-  session_start();
-}
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 

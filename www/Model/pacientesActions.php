@@ -2,6 +2,7 @@
 namespace Model;
 use Model\ConexaoDB;
 include_once('PacienteEndereco.php');
+include_once('Paciente.php');
 require_once("ConexaoDB.php");
 
 
@@ -11,21 +12,19 @@ class pacientesActions extends ConexaoDB{
     private $Db;
 
     //INSERE PACIENTES
-    public function inserePaciente($nome, $dataNasc, $cpf, $email, $enderecoID, $telefone, $celular, $observacoes) {
+    public function insertPaciente($nome, $dataNasc, $cpf, $email, $enderecoID, $telefone, $celular, $observacoes) {
 
-        var_dump("entrou na model");
-        die();
 
-        $Datafetch = $this->Db = $this->ConexaoDB()->prepare("INSERT INTO `Paciente`(`nome`, `dataNasc`, `cpf`, `email`, `enderecoID`, `telefone`, `celular`, `observacoes`) 
-                                                                VALUES (:nome, :dataNasc, :cpf, :email, :enderecoID, :telefone, :celular, :observacoes)");
+        $Datafetch = $this->Db = $this->ConexaoDB()->prepare("INSERT INTO `Paciente`(`nome`, `dataNasc`, `cpf`, `email`, `telefone`, `celular`, `observacoes`, `enderecoID`) 
+                                                                VALUES (:nome, :dataNasc, :cpf, :email, :telefone, :celular, :observacoes, :enderecoID)");
         $this->Db->bindParam(":nome", $nome, \PDO::PARAM_STR);
         $this->Db->bindParam(":dataNasc", $dataNasc, \PDO::PARAM_STR);
         $this->Db->bindParam(":cpf", $cpf, \PDO::PARAM_STR);
         $this->Db->bindParam(":email", $email, \PDO::PARAM_STR);
-        $this->Db->bindParam(":enderecoID", $enderecoID, \PDO::PARAM_STR);
         $this->Db->bindParam(":telefone", $telefone, \PDO::PARAM_STR);
         $this->Db->bindParam(":celular", $celular, \PDO::PARAM_STR);
         $this->Db->bindParam(":observacoes", $observacoes, \PDO::PARAM_STR);
+        $this->Db->bindParam(":enderecoID", $enderecoID, \PDO::PARAM_STR);
 
         
         if($Datafetch->execute())

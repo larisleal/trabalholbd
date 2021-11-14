@@ -17,21 +17,21 @@ class materiaisActions extends ConexaoDB{
 
         $Datafetch = $this->Db = $this->ConexaoDB()->prepare(
                 "INSERT INTO `Material`(`nomeFornecedor`, `produto`, `qtd`, `valor`, `dataCompra`, `observacoesMaterial`)
-                VALUES (:nomeFornecedor, :produto, :qtd, :valor, :dataCompra, :valor, :observacoesMaterial)");
+                VALUES (:nomeFornecedor, :produto, :qtd, :valor, :dataCompra, :observacoesMaterial)");
         $this->Db->bindParam(":nomeFornecedor", $nomeFornecedor, \PDO::PARAM_STR);
         $this->Db->bindParam(":produto", $produto, \PDO::PARAM_STR);
         $this->Db->bindParam(":qtd", $qtd, \PDO::PARAM_STR);
         $this->Db->bindParam(":valor", $valor, \PDO::PARAM_STR);
         $this->Db->bindParam(":dataCompra", $dataCompra, \PDO::PARAM_STR);
         $this->Db->bindParam(":observacoesMaterial", $observacoesMaterial, \PDO::PARAM_STR);
-        
+
         
         if($Datafetch->execute())
             return true;
         else
             return false;
+
         
-            
     }
 
     //REMOVE MATERIAL
